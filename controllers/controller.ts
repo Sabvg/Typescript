@@ -63,6 +63,8 @@ function createCar(){
     } else {
         return true;
     }
+        
+    car.addWheel;
 }
 
 //WHEELS:
