@@ -64,7 +64,6 @@ function createCar(){
         return true;
     }
         
-    car.addWheel;
 }
 
 //WHEELS:
@@ -111,6 +110,8 @@ function createWheel(){
     } else {
         return true;
     }
+    
+    car.addWheel;
 
 //resetForm();
 //quería probar a hacer que se limpiara el formulario al crearse una rueda y se limpia pero si escribo nuevos datos y le doy al botón "Create wheels" vuelve a pintar los datos anteriores.
