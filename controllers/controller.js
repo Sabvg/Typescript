@@ -1,6 +1,6 @@
 var car;
 function createCar() {
-    var _a, _b;
+    var _a, _b, _c, _d;
     var acumError = 0;
     var plate = document.getElementById('plate').value.toString().toUpperCase(), color = document.getElementById('color').value.toString(), brand = document.getElementById('brand').value.toString();
     if (plate == "" || color == "" || brand == "") {
@@ -27,8 +27,12 @@ function createCar() {
         var element = document.createElement('div');
         element.innerHTML = "\n            <div class=\"card mt-4 p-3  style=\"width: 10rem;\">\n                <div class=\"card-body>\n                    <h3 class=\"card-title\">Your car created:</h3>\n                    <p class=\"card-text mt-3\"><b>Plate</b>: " + car_1.plate + "</p>\n                    <p class=\"card-text\"><b>Color</b>: " + car_1.color + "</p>\n                    <p class=\"card-text\"><b>Brand</b>: " + car_1.brand + "</p>\n                </div>\n        </div>";
         carInfo === null || carInfo === void 0 ? void 0 : carInfo.appendChild(element);
+        //muestro step2
         (_a = document.getElementById('myCarWheel')) === null || _a === void 0 ? void 0 : _a.classList.remove('no-display');
         (_b = document.getElementById('createWheel')) === null || _b === void 0 ? void 0 : _b.classList.remove('no-display');
+        //oculto step1
+        (_c = document.getElementById('carForm')) === null || _c === void 0 ? void 0 : _c.classList.add('no-display');
+        (_d = document.getElementById('createCar')) === null || _d === void 0 ? void 0 : _d.classList.add('no-display');
     }
     if (acumError > 0) {
         return false;
@@ -55,10 +59,10 @@ function createWheel() {
             wheel.splice(0, wheel.length);
             alert("Brand " + i + " field must be filled.");
             acumErrorWheel++;
+            // } else if(validateDiameter(wheelDiameter) && wheelBrand != "") { 
         }
-        else if (validateDiameter(wheelDiameter) && wheelBrand != "") {
+        else {
             wheel.push(new Wheel(wheelDiameter, wheelBrand));
-            //console.log('whel diameter' + wheelDiameter.valueOf());
         }
     }
     printWheel();
