@@ -48,8 +48,14 @@ function createCar(){
 
         carInfo?.appendChild(element);
 
+        //muestro step2
         document.getElementById('myCarWheel')?.classList.remove('no-display');
         document.getElementById('createWheel')?.classList.remove('no-display');
+
+        //oculto step1
+        document.getElementById('carForm')?.classList.add('no-display');
+        document.getElementById('createCar')?.classList.add('no-display');
+
     } 
 
     if (acumError > 0) {
@@ -86,10 +92,11 @@ function createWheel(){
                 alert("Brand " + i + " field must be filled.");
                 acumErrorWheel++;
 
-            } else if(validateDiameter(wheelDiameter) && wheelBrand != "") { 
+            // } else if(validateDiameter(wheelDiameter) && wheelBrand != "") { 
+            } else { 
 
                 wheel.push(new Wheel(wheelDiameter, wheelBrand)); 
-                //console.log('whel diameter' + wheelDiameter.valueOf());
+           
         
                 }
         }
