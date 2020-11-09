@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+    <script src="../models/car.js"></script>
+    <script src="../models/wheel.js"></script>
+    <script src="../controllers/controller.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container-fluid mt-5">
+
+        <h2 class="text-center mb-3">Create your own car</h2>
+
+        <hr class="new1 mb-5">
+
+        <h3 class="text-center">Step 1: Create the plate, brand and color</h3>
+
+        <hr class="new2 mt-4 mb-5">
+
+        <form id="carForm">
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label for="plate">Plate</label>
+                    <input id="plate" type="text" class="form-control" placeholder="Plate">
+                </div>
+                <div class="col-md-4">
+                    <label for="color">Color</label>
+                    <input id="color" type="text" class="form-control" placeholder="Color">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="brand">Brand</label>
+                    <input id="brand" type="text" class="form-control" placeholder="Brand">
+                </div>
+            </div>
+        </form>
+
+        <button id="createCar" type="button" class="btn btn-info mb-4" onclick="createCar()">Create car</button>
+
+        <p id="carInfo"></p>
+
+
+
+
+        <form name="myCarWheel" id="myCarWheel" class="no-display">
+            <h3 class="text-center mt-5">Step 2: Create the brands and diameters of the wheels</h3>
+
+            <hr class="new3 mt-4 mb-5">
+
+            <div class="row mb-4" id="diameters">
+                <div class="col-md-3">
+                    <label for="wheelDiameter1">Wheel 1: Diameter</label>
+                    <input id="wheelDiameter1" type="text" class="form-control" placeholder="Wheel Diameter 1">
+                </div>
+                <div class="col-md-3">
+                    <label for="wheelDiameter2">Wheel 2: Diameter</label>
+                    <input id="wheelDiameter2" type="text" class="form-control" placeholder="Wheel Diameter 2">
+                </div>
+                <div class="col-md-3">
+                    <label for="wheelDiameter3">Wheel 3: Diameter</label>
+                    <input id="wheelDiameter3" type="text" class="form-control" placeholder="Wheel Diameter 3">
+                </div>
+                <div class="col-md-3">
+                    <label for="wheelDiameter4">Wheel 4: Diameter</label>
+                    <input id="wheelDiameter4" type="text" class="form-control" placeholder="Wheel Diameter 4">
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <label for="wheelBrand1">Wheel 1: Brand</label>
+                    <input id="wheelBrand1" type="text" class="form-control" placeholder="Wheel Brand 1">
+                </div>
+                <div class="col-md-3">
+                    <label for="wheelBrand2">Wheel 2: Brand</label>
+                    <input id="wheelBrand2" type="text" class="form-control" placeholder="Wheel Brand 2">
+                </div>
+                <div class="col-md-3">
+                    <label for="wheelBrand3">Wheel 3: Brand</label>
+                    <input id="wheelBrand3" type="text" class="form-control" placeholder="Wheel Brand 3">
+                </div>
+                <div class="col-md-3">
+                    <label for="wheelBrand4">Wheel 4: Brand</label>
+                    <input id="wheelBrand4" type="text" class="form-control" placeholder="Wheel Brand 4">
+                </div>
+            </div>
+        </form>
+
+        <button id="createWheel" type="button" class="no-display btn btn-secondary mb-" onclick="createWheel()">Create wheels</button>
+
+        <p id="carWheel"></p>
+
+    </div>
+
+</body>
+
+</html>

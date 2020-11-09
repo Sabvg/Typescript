@@ -1,0 +1,32 @@
+.container-fluid {
+    max-width: 800px;
+}
+
+hr.new1 {
+    border: 2px solid blue;
+    border-radius: 5px;
+    width: 100px;
+}
+
+hr.new2 {
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    width: 200px;
+}
+
+hr.new3 {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.no-display {
+    display: none;
+}
+
+@media (max-width: 575.98px) {
+    .col-md-4,
+    .col-md-3 {
+        margin-bottom: 30px;
+    }
+}
