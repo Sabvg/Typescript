@@ -1,3 +1,4 @@
+"use strict";
 var car;
 function createCar() {
     var _a, _b, _c, _d;
@@ -21,11 +22,11 @@ function createCar() {
         acumError++;
         alert("The plate must have 4 numbers followed by 3 letters");
     }
-    if ((validatePlate(plate)) && (plate != "" || color != "" || brand != "")) {
-        var car_1 = new Car(plate, color, brand);
+    else {
+        car = new Car(plate, color, brand);
         var carInfo = document.getElementById('carInfo');
         var element = document.createElement('div');
-        element.innerHTML = "\n            <div class=\"card mt-4 p-3  style=\"width: 10rem;\">\n                <div class=\"card-body>\n                    <h3 class=\"card-title\">Your car created:</h3>\n                    <p class=\"card-text mt-3\"><b>Plate</b>: " + car_1.plate + "</p>\n                    <p class=\"card-text\"><b>Color</b>: " + car_1.color + "</p>\n                    <p class=\"card-text\"><b>Brand</b>: " + car_1.brand + "</p>\n                </div>\n        </div>";
+        element.innerHTML = "\n            <div class=\"card mt-4 p-3  style=\"width: 10rem;\">\n                <div class=\"card-body>\n                    <h3 class=\"card-title\">Your car created:</h3>\n                    <p class=\"card-text mt-3\"><b>Plate</b>: " + car.plate + "</p>\n                    <p class=\"card-text\"><b>Color</b>: " + car.color + "</p>\n                    <p class=\"card-text\"><b>Brand</b>: " + car.brand + "</p>\n                </div>\n        </div>";
         carInfo === null || carInfo === void 0 ? void 0 : carInfo.appendChild(element);
         //muestro step2
         (_a = document.getElementById('myCarWheel')) === null || _a === void 0 ? void 0 : _a.classList.remove('no-display');
@@ -59,11 +60,13 @@ function createWheel() {
             wheel.splice(0, wheel.length);
             alert("Brand " + i + " field must be filled.");
             acumErrorWheel++;
-            // } else if(validateDiameter(wheelDiameter) && wheelBrand != "") { 
         }
         else {
             wheel.push(new Wheel(wheelDiameter, wheelBrand));
         }
+    }
+    for (var i = 0; i <= wheel.length; i++) {
+        car.addWheel(wheel[i]);
     }
     printWheel();
     if (acumErrorWheel > 0) {
@@ -72,9 +75,6 @@ function createWheel() {
     else {
         return true;
     }
-    
-    car.addWheel;
-    
     //resetForm();
     //quería probar a hacer que se limpiara el formulario al crearse una rueda y se limpia pero si escribo nuevos datos y le doy al botón "Create wheels" vuelve a pintar los datos anteriores.
 }
