@@ -8,12 +8,10 @@ function createCar(){
     brand: string = (<HTMLInputElement>document.getElementById('brand')).value.toString();
 
     if(plate == "" || color == "" || brand == "") {
- 
         if(plate == "") {
             acumError++;
             alert("Plate field must be filled.");
         }
-
         if(color == "") {
             acumError++;
             alert("Color field must be filled.");
@@ -27,11 +25,8 @@ function createCar(){
         acumError++;
         alert("The plate must have 4 numbers followed by 3 letters")
         
-    }
-    
-    if ((validatePlate(plate)) && (plate != "" || color != "" || brand != "")){
-    
-        let car = new Car(plate, color, brand);
+    } else {
+        car = new Car(plate, color, brand);
 
         const carInfo = document.getElementById('carInfo');
         const element = document.createElement('div');
@@ -45,7 +40,6 @@ function createCar(){
                     <p class="card-text"><b>Brand</b>: ${car.brand}</p>
                 </div>
         </div>`;
-
         carInfo?.appendChild(element);
 
         //muestro step2
@@ -55,7 +49,6 @@ function createCar(){
         //oculto step1
         document.getElementById('carForm')?.classList.add('no-display');
         document.getElementById('createCar')?.classList.add('no-display');
-
     } 
 
     if (acumError > 0) {
@@ -63,7 +56,6 @@ function createCar(){
     } else {
         return true;
     }
-        
 }
 
 //WHEELS:
@@ -93,26 +85,23 @@ function createWheel(){
                 alert("Brand " + i + " field must be filled.");
                 acumErrorWheel++;
 
-            // } else if(validateDiameter(wheelDiameter) && wheelBrand != "") { 
-            } else { 
+            } else {
+                wheel.push(new Wheel(wheelDiameter, wheelBrand));
+            }
+    }
 
-                wheel.push(new Wheel(wheelDiameter, wheelBrand)); 
-           
-        
-                }
-        }
+    for(let i=0; i<= wheel.length; i++) {
+        car.addWheel(wheel[i]);
+     }
     
-        printWheel();
-
-
+    printWheel();
+        
     if (acumErrorWheel > 0) {
         return false;
     } else {
         return true;
     }
     
-    car.addWheel;
-
 //resetForm();
 //quería probar a hacer que se limpiara el formulario al crearse una rueda y se limpia pero si escribo nuevos datos y le doy al botón "Create wheels" vuelve a pintar los datos anteriores.
 }
@@ -131,16 +120,13 @@ function printWheel() {
             <p class="card-text"><b>Wheel Diameter 4</b>: ${wheel[3].diameter} --- <b>Wheel Brand 4</b>: ${wheel[3].brand}</p>
         </div>
     </div>`;
-
     carWheel?.appendChild(element2);
-
 }
 
 function resetForm() {
 let resetForm:HTMLFormElement = <HTMLFormElement>document.getElementById('myCarWheel');
 resetForm.reset();
 }
-
 
 //VALIDATION FUNCTIONS
 
