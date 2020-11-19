@@ -68,9 +68,7 @@ function createWheel(){
     for (let i = 1; i <= 4; i++) {
 
         let wheelDiameter: number = parseFloat((<HTMLInputElement>document.getElementById('wheelDiameter'+ i)).value);
-
-        // let wheelDiameterValidate: string = (<HTMLInputElement>document.getElementById('wheelDiameter'+ i)).value;
-
+        
         let wheelBrand: string = (<HTMLInputElement>document.getElementById('wheelBrand' + i)).value.toString();
         
           if(!validateDiameter(wheelDiameter)) {
@@ -84,16 +82,17 @@ function createWheel(){
                 wheel.splice(0, wheel.length);
                 alert("Brand " + i + " field must be filled.");
                 acumErrorWheel++;
-
-            } else {
+            } 
+            
+            if(acumErrorWheel == 0) {
                 wheel.push(new Wheel(wheelDiameter, wheelBrand));
             }
     }
 
-    for(let i=0; i<= wheel.length; i++) {
+    for(let i=0; i<= 4; i++) {
         car.addWheel(wheel[i]);
-     }
-    
+    }
+        
     printWheel();
         
     if (acumErrorWheel > 0) {
