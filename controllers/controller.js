@@ -22,7 +22,7 @@ function createCar() {
         acumError++;
         alert("The plate must have 4 numbers followed by 3 letters");
     }
-    else {
+    if (acumError == 0) {
         car = new Car(plate, color, brand);
         var carInfo = document.getElementById('carInfo');
         var element = document.createElement('div');
@@ -34,12 +34,6 @@ function createCar() {
         //oculto step1
         (_c = document.getElementById('carForm')) === null || _c === void 0 ? void 0 : _c.classList.add('no-display');
         (_d = document.getElementById('createCar')) === null || _d === void 0 ? void 0 : _d.classList.add('no-display');
-    }
-    if (acumError > 0) {
-        return false;
-    }
-    else {
-        return true;
     }
 }
 //WHEELS:
@@ -60,27 +54,23 @@ function createWheel() {
             alert("Brand " + i + " field must be filled.");
             acumErrorWheel++;
         }
-        if (acumErrorWheel == 0) {
-            wheel.push(new Wheel(wheelDiameter, wheelBrand));
+    }
+    if (acumErrorWheel == 0) {
+        for (var i = 1; i <= 4; i++) {
+            var wheelDiameter = parseFloat(document.getElementById('wheelDiameter' + i).value);
+            var wheelBrand = document.getElementById('wheelBrand' + i).value.toString();
+            var wheel_1 = new Wheel(wheelDiameter, wheelBrand);
+            car.addWheel(wheel_1);
         }
     }
-    for (var i = 0; i <= 4; i++) {
-        car.addWheel(wheel[i]);
-    }
     printWheel();
-    if (acumErrorWheel > 0) {
-        return false;
-    }
-    else {
-        return true;
-    }
     //resetForm();
     //quería probar a hacer que se limpiara el formulario al crearse una rueda y se limpia pero si escribo nuevos datos y le doy al botón "Create wheels" vuelve a pintar los datos anteriores.
 }
 function printWheel() {
     var carWheel = document.getElementById('carWheel');
     var element2 = document.createElement('div');
-    element2.innerHTML = "\n    <div class=\"card mt-4 p-3 style=\"width: 10rem;\">\n        <div class=\"card-body>\n            <h3 class=\"card-title\">Your wheels created:</h3>\n            <p class=\"card-text mt-3\"><b>Wheel Diameter 1</b>: " + wheel[0].diameter + " --- <b>Wheel Brand 1</b>: " + wheel[0].brand + "</p>\n            <p class=\"card-text\"><b>Wheel Diameter 2</b>: " + wheel[1].diameter + " --- <b>Wheel Brand 2</b>: " + wheel[1].brand + "</p>\n            <p class=\"card-text\"><b>Wheel Diameter 3</b>: " + wheel[2].diameter + " --- <b>Wheel Brand 3</b>: " + wheel[2].brand + "</p>\n            <p class=\"card-text\"><b>Wheel Diameter 4</b>: " + wheel[3].diameter + " --- <b>Wheel Brand 4</b>: " + wheel[3].brand + "</p>\n        </div>\n    </div>";
+    element2.innerHTML = "\n    <div class=\"card mt-4 p-3 style=\"width: 10rem;\">\n        <div class=\"card-body>\n            <h3 class=\"card-title\">Your wheels created:</h3>\n            <p class=\"card-text mt-3\"><b>Wheel Diameter 1</b>: " + car.wheels[0].diameter + " --- <b>Wheel Brand 1</b>: " + car.wheels[0].brand + "</p>\n            <p class=\"card-text\"><b>Wheel Diameter 2</b>: " + car.wheels[1].diameter + " --- <b>Wheel Brand 2</b>: " + car.wheels[1].brand + "</p>\n            <p class=\"card-text\"><b>Wheel Diameter 3</b>: " + car.wheels[2].diameter + " --- <b>Wheel Brand 3</b>: " + car.wheels[2].brand + "</p>\n            <p class=\"card-text\"><b>Wheel Diameter 4</b>: " + car.wheels[3].diameter + " --- <b>Wheel Brand 4</b>: " + car.wheels[3].brand + "</p>\n        </div>\n    </div>";
     carWheel === null || carWheel === void 0 ? void 0 : carWheel.appendChild(element2);
 }
 function resetForm() {
