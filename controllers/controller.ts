@@ -32,15 +32,12 @@ function createCar(){
         const carInfo = document.getElementById('carInfo');
         const element = document.createElement('div');
 
+        document.getElementById("carInfo")?.classList.remove("no-display");
         element.innerHTML = `
-            <div class="card mt-4 p-3  style="width: 10rem;">
-                <div class="card-body>
-                    <h3 class="card-title">Your car created:</h3>
-                    <p class="card-text mt-3"><b>Plate</b>: ${car.plate}</p>
-                    <p class="card-text"><b>Color</b>: ${car.color}</p>
-                    <p class="card-text"><b>Brand</b>: ${car.brand}</p>
-                </div>
-        </div>`;
+            <h5 class="card-title">Your car created:</h5>
+            <p class="card-text mt-3"><b>Plate</b>: ${car.plate}</p>
+            <p class="card-text"><b>Color</b>: ${car.color}</p>
+            <p class="card-text"><b>Brand</b>: ${car.brand}</p>`;
         carInfo?.appendChild(element);
 
         //muestro step2
@@ -54,28 +51,20 @@ function createCar(){
 }
 
 //WHEELS:
-
-let wheel: Wheel[] = [];
-   
 function createWheel(){
     let acumErrorWheel = 0;
     
     for (let i = 1; i <= 4; i++) {
-
         let wheelDiameter: number = parseFloat((<HTMLInputElement>document.getElementById('wheelDiameter'+ i)).value);
         let wheelBrand: string = (<HTMLInputElement>document.getElementById('wheelBrand' + i)).value.toString();
-            if(!validateDiameter(wheelDiameter)) {
-                acumErrorWheel++;
-                wheel.splice(0, wheel.length);
-                return alert('The diameter of wheel' + i + ' has to measure between 0.4 and 2');
-                //con return termina, no sigue leyendo el code y desaparece el error en consola de que no encuentra diameter. Los alert salen ahora uno a uno pero si voy corrigiendo los diámetros sólo pinta el 1 y 2 repetidos, con el splice se arregla
-            } else if(wheelBrand == "") {
-                wheel.splice(0, wheel.length);
-                alert("Brand " + i + " field must be filled.");
-                acumErrorWheel++;
-            } 
+        if(!validateDiameter(wheelDiameter)) {
+            acumErrorWheel++;
+            alert('The diameter of wheel' + i + ' has to measure between 0.4 and 2');
+        } else if(wheelBrand == "") {
+            alert("Brand " + i + " field must be filled.");
+            acumErrorWheel++;
+        } 
     }
-
     if(acumErrorWheel == 0) {
         for(let i=1; i<= 4; i++) {
             let wheelDiameter: number = parseFloat((<HTMLInputElement>document.getElementById('wheelDiameter'+ i)).value);  
@@ -84,8 +73,9 @@ function createWheel(){
             let wheel = new Wheel(wheelDiameter, wheelBrand);
             car.addWheel(wheel);
         }
+        printWheel();
     }
-    printWheel();
+    
 //resetForm();
 //quería probar a hacer que se limpiara el formulario al crearse una rueda y se limpia pero si escribo nuevos datos y le doy al botón "Create wheels" vuelve a pintar los datos anteriores.
 }
@@ -93,18 +83,14 @@ function createWheel(){
 function printWheel() {
     const carWheel = document.getElementById('carWheel');
     const element2 = document.createElement('div');
+    
+    document.getElementById("carWheel")?.classList.remove("no-display");
 
-    element2.innerHTML = `
-    <div class="card mt-4 p-3 style="width: 10rem;">
-        <div class="card-body>
-            <h3 class="card-title">Your wheels created:</h3>
-            <p class="card-text mt-3"><b>Wheel Diameter 1</b>: ${car.wheels[0].diameter} --- <b>Wheel Brand 1</b>: ${car.wheels[0].brand}</p>
-            <p class="card-text"><b>Wheel Diameter 2</b>: ${car.wheels[1].diameter} --- <b>Wheel Brand 2</b>: ${car.wheels[1].brand}</p>
-            <p class="card-text"><b>Wheel Diameter 3</b>: ${car.wheels[2].diameter} --- <b>Wheel Brand 3</b>: ${car.wheels[2].brand}</p>
-            <p class="card-text"><b>Wheel Diameter 4</b>: ${car.wheels[3].diameter} --- <b>Wheel Brand 4</b>: ${car.wheels[3].brand}</p>
-        </div>
-    </div>`;
-    carWheel?.appendChild(element2);
+    for(let i = 0; i <= car.wheels.length; i++) {
+        element2.innerHTML += `
+            <p class="card-text mt-3"><b>Wheel Diameter ${i + 1}</b>: ${car.wheels[i].diameter} --- <b>Wheel Brand ${i + 1}</b>: ${car.wheels[i].brand}</p>`;
+        carWheel?.appendChild(element2);
+    }
 }
 
 function resetForm() {
@@ -113,7 +99,6 @@ resetForm.reset();
 }
 
 //VALIDATION FUNCTIONS
-
 function validatePlate(plate: string) {
     let valPlate = /^[0-9]{4}[a-z, A-Z]{3}$/;
     return valPlate.test(plate) ? true : false;
